@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<title>Parkovací systém – prototyp</title>
+<style>
+  body{font-family:Arial,Helvetica,sans-serif;background:#f4f5f9;margin:0;color:#222}
+  header{background:#4a3c8c;color:#fff;padding:14px 24px;display:flex;justify-content:space-between;align-items:center}
+  header a{color:#fff;margin-left:18px;text-decoration:none}
+  main{max-width:640px;margin:28px auto;background:#fff;padding:24px 28px;border-radius:8px;box-shadow:0 1px 4px #0002}
+  main.wide{max-width:900px}
+  h1{margin-top:0;font-size:22px}
+  label{display:block;margin-top:14px;font-weight:bold;font-size:14px}
+  input{width:100%;box-sizing:border-box;padding:9px;margin-top:5px;border:1px solid #bbb;border-radius:4px;font-size:15px}
+  button{margin-top:20px;background:#4a3c8c;color:#fff;border:0;padding:11px 22px;border-radius:4px;font-size:15px;cursor:pointer}
+  .msg{padding:10px 12px;border-radius:4px;margin-bottom:12px;font-size:14px}
+  .ok{background:#dff3e0;border:1px solid #8fcf93}
+  .err{background:#fde3e3;border:1px solid #e59a9a}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{text-align:left;padding:8px;border-bottom:1px solid #ddd}
+  th{background:#eceaf6}
+  .db{font-size:13px;padding:8px 12px;border-radius:4px;margin-top:22px}
+  .db.up{background:#dff3e0}.db.down{background:#fde3e3}
+  small{color:#666}
+</style>
+</head>
+<body>
+<header>
+  <strong>Parkovací systém – prototyp</strong>
+  <nav><a href="/">Registrácia</a><a href="/pouzivatelia">Registrovaní používatelia</a></nav>
+</header>
+{% block content %}{% endblock %}
+</body>
+</html>

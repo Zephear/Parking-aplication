@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="wide">
+  <h1>Registrovaní používatelia (údaje načítané z databázy)</h1>
+  {% for cat, m in get_flashed_messages(with_categories=true) %}<div class="msg {{cat}}">{{m}}</div>{% endfor %}
+  <table>
+    <tr><th>ID</th><th>Meno</th><th>E-mail</th><th>Telefón</th><th>EČV</th><th>Kredit</th><th>Vytvorený</th></tr>
+    {% for r in rows %}
+    <tr><td>{{r.id}}</td><td>{{r.meno}}</td><td>{{r.email}}</td><td>{{r.telefon}}</td><td>{{r.evc}}</td>
+        <td>{{ '%.2f'|format(r.kredit) }} €</td><td>{{ r.vytvoreny.strftime('%d.%m.%Y %H:%M') }}</td></tr>
+    {% else %}<tr><td colspan="7">Zatiaľ žiadni používatelia.</td></tr>{% endfor %}
+  </table>
+  <div class="db {{ 'up' if db_ok else 'down' }}">
+    Databáza: {{ 'pripojená ✔' if db_ok else 'nedostupná ✘' }} – {{ db_info }}
+  </div>
+</main>
+{% endblock %}

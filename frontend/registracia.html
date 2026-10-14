@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<main>
+  <h1>UC.01 – Registrácia používateľa</h1>
+  {% for cat, m in get_flashed_messages(with_categories=true) %}<div class="msg {{cat}}">{{m}}</div>{% endfor %}
+  <form method="post">
+    <label>Meno<input name="meno" placeholder="Ján Novák"></label>
+    <label>E-mail<input name="email" type="text" placeholder="jan.novak@example.com"></label>
+    <label>Telefónne číslo<input name="telefon" placeholder="+421 900 123 456"></label>
+    <label>Heslo <small>(minimálne 8 znakov)</small><input name="heslo" type="password"></label>
+    <label>Poznávacia značka (EČV)<input name="evc" placeholder="GA123AB"></label>
+    <button type="submit">Zaregistrovať sa</button>
+  </form>
+  <div class="db {{ 'up' if db_ok else 'down' }}">
+    Databáza: {{ 'pripojená ✔' if db_ok else 'nedostupná ✘' }} – {{ db_info }}
+  </div>
+</main>
+{% endblock %}
