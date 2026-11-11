@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}<main>
+<h1>Rezervácia parkovania</h1>
+<p>Školský prototyp • TESTOVACIE ÚDAJE • bez skutočných platieb</p>
+<p>Časové pásmo: Europe/Bratislava. Účtuje sa každá začatá hodina. Koniec intervalu sa už nezapočítava do obsadenosti.</p>
+{% if error %}<div class="msg err">{{error}}</div>{% endif %}
+<form method="post"><input type="hidden" name="csrf" value="{{session.csrf}}">
+<label>Vozidlo<select name="vozidlo" required>{% for v in vozidla %}<option value="{{v.id}}">{{v.evc}} — {{v.meno}}</option>{% endfor %}</select></label>
+<label>Tarifa<select name="tarifa" required>{% for t in tarify %}<option value="{{t.id}}">{{t.nazov}} — {{t.cena_za_hodinu}} €/hod.</option>{% endfor %}</select></label>
+<label>Začiatok<input type="datetime-local" name="zaciatok" required></label>
+<label>Koniec<input type="datetime-local" name="koniec" required></label>
+<button>Overiť dostupnosť a vypočítať cenu</button></form>
+</main>{% endblock %}

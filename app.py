@@ -7,8 +7,8 @@ import psycopg2.extras
 from flask import Flask, flash, redirect, render_template, request, url_for
 from werkzeug.security import generate_password_hash
 
-app = Flask(__name__)
-app.secret_key = "prototyp-nie-pre-produkciu"
+app = Flask(__name__, template_folder="frontend")
+app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(32)
 DATABASE_URL = os.environ.get("DATABASE_URL", "postgresql://parking:parking@localhost:5432/parking")
 
 
@@ -21,7 +21,8 @@ def init_db():
     for _ in range(30):
         try:
             with db() as conn, conn.cursor() as cur:
-                cur.execute(open(os.path.join(os.path.dirname(__file__), "schema.sql")).read())
+                with open(os.path.join(os.path.dirname(__file__), "schema.sql"), encoding="utf-8") as source:
+                    cur.execute(source.read())
             return
         except psycopg2.OperationalError:
             time.sleep(1)
@@ -34,8 +35,8 @@ def db_info():
             cur.execute("SELECT version()")
             ver = cur.fetchone()[0].split(",")[0]
         return True, ver
-    except Exception as e:  # noqa
-        return False, str(e)
+    except psycopg2.Error:
+        return False, "Pripojenie sa nepodarilo. Skontrolujte konfiguráciu servera."
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -92,6 +93,14 @@ def pouzivatelia():
     ok, info = db_info()
     return render_template("pouzivatelia.html", rows=rows, db_ok=ok, db_info=info)
 
+
+from booking import install
+install(app, db)
+
+@app.errorhandler(psycopg2.OperationalError)
+def databaza_nedostupna(error):
+    return render_template("vysledok.html", title="Databáza je nedostupná",
+                           message="Skúste to neskôr. Kontaktujte správcu prototypu.", row=None), 503
 
 if __name__ == "__main__":
     init_db()

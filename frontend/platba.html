@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block content %}<main>
+<h1>Cenová ponuka a simulácia platby</h1>
+<p class="msg ok">Dostupné miesta: {{free}}. Dostupnosť sa znovu overí pri platbe.</p>
+<p>Vozidlo: <strong>{{vehicle.evc}}</strong></p>
+<p>{{start|skcas}} – {{end|skcas}} (Europe/Bratislava)</p>
+<p>Sadzba: {{rate}} €/začatá hodina</p><h2>Celkom: {{amount}} €</h2>
+<p>TESTOVACIA PLATBA • žiadna banka ani platobná karta.<br>Ponuka platí 15 minút. Po potvrdení sa cena nemení.</p>
+<form method="post" action="/platba"><input type="hidden" name="csrf" value="{{session.csrf}}"><input type="hidden" name="token" value="{{token}}">
+<button name="rozhodnutie" value="uspech">Simulovať úspešnú platbu</button>
+<button name="rozhodnutie" value="odmietnutie" class="reject">Simulovať odmietnutie</button></form>
+</main>{% endblock %}

@@ -1,0 +1,16 @@
+test_01_templates_registration (test_booking.BookingTests.test_01_templates_registration) ... ok
+test_02_success_and_idempotency (test_booking.BookingTests.test_02_success_and_idempotency) ... ok
+test_03_decline_frees_capacity (test_booking.BookingTests.test_03_decline_frees_capacity) ... ok
+test_04_concurrent_last_slot_and_capacity (test_booking.BookingTests.test_04_concurrent_last_slot_and_capacity) ... ok
+test_05_frozen_quote_and_confirmed_price (test_booking.BookingTests.test_05_frozen_quote_and_confirmed_price) ... ok
+test_06_database_guards (test_booking.BookingTests.test_06_database_guards) ... ok
+test_07_boundary_and_vehicle_overlap (test_booking.BookingTests.test_07_boundary_and_vehicle_overlap) ... ok
+test_08_invalid_csrf_quote_and_time (test_booking.BookingTests.test_08_invalid_csrf_quote_and_time) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 3.393s
+
+OK
+
+Standalone SQL restore: PASS (1,3,2,1,3,3 rows).
+Original user/car preservation and repeated migration/seed: PASS.

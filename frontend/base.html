@@ -11,7 +11,8 @@
   main.wide{max-width:900px}
   h1{margin-top:0;font-size:22px}
   label{display:block;margin-top:14px;font-weight:bold;font-size:14px}
-  input{width:100%;box-sizing:border-box;padding:9px;margin-top:5px;border:1px solid #bbb;border-radius:4px;font-size:15px}
+  input,select{width:100%;box-sizing:border-box;padding:9px;margin-top:5px;border:1px solid #bbb;border-radius:4px;font-size:15px}
+  .reject{background:#93343f} a{color:#4a3c8c}
   button{margin-top:20px;background:#4a3c8c;color:#fff;border:0;padding:11px 22px;border-radius:4px;font-size:15px;cursor:pointer}
   .msg{padding:10px 12px;border-radius:4px;margin-bottom:12px;font-size:14px}
   .ok{background:#dff3e0;border:1px solid #8fcf93}
@@ -27,7 +28,7 @@
 <body>
 <header>
   <strong>Parkovací systém – prototyp</strong>
-  <nav><a href="/">Registrácia</a><a href="/pouzivatelia">Registrovaní používatelia</a></nav>
+  <nav><a href="/">Registrácia</a><a href="/pouzivatelia">Registrovaní používatelia</a><a href="/rezervacia">Rezervácia</a></nav>
 </header>
 {% block content %}{% endblock %}
 </body>

@@ -1,0 +1,15 @@
+{% extends "base.html" %}{% block content %}<main>
+<p>ŠKOLSKÝ PROTOTYP • TESTOVACÍ SCENÁR</p>
+<h1>{{title}}</h1><div class="msg {{'ok' if row and row.stav == 'potvrdena' else 'err'}}">{{message}}</div>
+{% if row %}<table>
+<tr><th>Číslo rezervácie</th><td>{{row.id}}</td></tr>
+<tr><th>Vozidlo</th><td>{{row.evc}}</td></tr>
+<tr><th>Parkovacie miesto</th><td>{{row.oznacenie or 'Nepridelené'}}</td></tr>
+<tr><th>Začiatok</th><td>{{row.zaciatok|skcas}}</td></tr>
+<tr><th>Koniec</th><td>{{row.koniec|skcas}}</td></tr>
+<tr><th>Časové pásmo</th><td>Europe/Bratislava</td></tr>
+<tr><th>Uložená cena</th><td>{{row.cena}} €</td></tr>
+<tr><th>Stav rezervácie</th><td>{{row.stav}}</td></tr>
+<tr><th>Simulovaná platba</th><td>{{row.platba_stav}}</td></tr>
+</table>{% endif %}<p><a href="/rezervacia">Nová rezervácia</a></p>
+</main>{% endblock %}
